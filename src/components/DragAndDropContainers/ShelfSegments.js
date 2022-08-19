@@ -536,7 +536,7 @@ function Trash({id}) {
                 justifyContent: 'center',
                 position: 'fixed',
                 left: '25px',
-                bottom: "25px",
+                bottom: "45px",
                 // transform: "translate(0, -50%)",
                 width: "clamp(75px, 7vw, 175px)",
                 height: "clamp(75px, 7vw, 175px)",

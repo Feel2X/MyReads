@@ -2,18 +2,22 @@ import { useEffect } from "react"
 
 // custom components
 import PageHeader from "./PageHeader"
-import Spinner from "./Spinner";
+import Spinner from "./Spinner"
 
 // hooks
-import useBookAPI from "../hooks/useBookAPI";
+import useBookAPI from "../hooks/useBookAPI"
 
 // ant design
-import { Layout } from "antd"
+import { Button, Layout } from "antd"
 import "antd/dist/antd.min.css"
 
 // dnd kit
-import {rectSortingStrategy} from "@dnd-kit/sortable";
-import {ShelfSegments} from "./DragAndDropContainers/ShelfSegments";
+import {rectSortingStrategy} from "@dnd-kit/sortable"
+import {ShelfSegments} from "./DragAndDropContainers/ShelfSegments"
+
+// images & icons
+import { PlusOutlined } from "@ant-design/icons"
+import AddButton from "./AddButton";
 
 
 const { Content } = Layout
@@ -37,15 +41,18 @@ const BookShelf = () => {
             { !booksFetched ?
                 <Spinner />
                 :
-                <ShelfSegments
-                    registeredBooks={registeredBooks}
-                    items={sortedBookIds}
-                    updateBookCategory={updateBookCategory}
-                    vertical
-                    columns={3}
-                    strategy={rectSortingStrategy}
-                    trashable
-                />
+                <>
+                    <ShelfSegments
+                        registeredBooks={registeredBooks}
+                        items={sortedBookIds}
+                        updateBookCategory={updateBookCategory}
+                        vertical
+                        columns={3}
+                        strategy={rectSortingStrategy}
+                        trashable
+                    />
+                    <AddButton />
+                </>
             }
         </>
 

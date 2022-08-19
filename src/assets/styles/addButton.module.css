@@ -1,0 +1,23 @@
+.addButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    background-color: #001529;
+    position: fixed;
+    right: 45px;
+    bottom: 45px;
+    box-shadow: 3px 3px 3px darkgray;
+}
+
+.addButton:hover {
+    background-color: #002e59;
+    cursor: pointer;
+}
+
+.plusIcon {
+    color: white;
+    font-size: 38px;
+}
