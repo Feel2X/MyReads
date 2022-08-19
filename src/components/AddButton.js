@@ -11,7 +11,7 @@ const AddButton = () => {
     const navigate = useNavigate()
 
     return (
-        <div className={style.addButton} onClick={() => navigate("/search")}>
+        <div className={style.addButton} onClick={() => navigate("/add")}>
             <PlusOutlined className={style.plusIcon} />
         </div>
     )
