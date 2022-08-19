@@ -2,6 +2,7 @@ import { useEffect } from "react"
 
 // custom components
 import PageHeader from "./PageHeader"
+import Spinner from "./Spinner";
 
 // hooks
 import useBookAPI from "../hooks/useBookAPI";
@@ -10,22 +11,44 @@ import useBookAPI from "../hooks/useBookAPI";
 import { Layout } from "antd"
 import "antd/dist/antd.min.css"
 
+// dnd kit
+import {rectSortingStrategy} from "@dnd-kit/sortable";
+import {ShelfSegments} from "./DragAndDropContainers/ShelfSegments";
+
+
 const { Content } = Layout
 
 const BookShelf = () => {
-    const { shelvedBooks, fetchShelvedBooks } = useBookAPI()
+    const {
+        booksFetched,
+        registeredBooks,
+        sortedBookIds,
+        fetchRegisteredBooks,
+        updateBookCategory
+    } = useBookAPI()
 
     useEffect(() => {
-        fetchShelvedBooks()  // fetch all shelved books and update state
+        fetchRegisteredBooks() // fetch all registered books and update state
     }, [])
 
     return (
-        <Layout>
+        <>
             <PageHeader />
-            <Content>
-                BookShelf Content
-            </Content>
-        </Layout>
+            { !booksFetched ?
+                <Spinner />
+                :
+                <ShelfSegments
+                    registeredBooks={registeredBooks}
+                    items={sortedBookIds}
+                    updateBookCategory={updateBookCategory}
+                    vertical
+                    columns={3}
+                    strategy={rectSortingStrategy}
+                    trashable
+                />
+            }
+        </>
+
     )
 }
 

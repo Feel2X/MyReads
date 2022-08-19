@@ -10,7 +10,7 @@ const { Header } = Layout
 
 const PageHeader = () => {
     return (
-        <Header className={styles.container}>
+        <Header className={styles.container} alt="image of books stacked on top of each other">
             <img className={styles.icon} src={logo} />
             <p className={styles.title}>MyReads</p>
         </Header>
