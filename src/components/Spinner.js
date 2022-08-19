@@ -3,7 +3,7 @@ import { Spin } from "antd";
 
 // style
 import "antd/dist/antd.min.css"
-import style from "../assets/styles/spinner.module.css"
+import style from "../assets/styles/Spinner.module.css"
 
 const Spinner = () => {
     return (

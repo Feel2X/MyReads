@@ -1,8 +1,8 @@
 // navigation
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // custom components
-import BookShelf from "./components/BookShelf";
-import BookSearch from "./components/BookSearch";
+import BookShelf from "./components/BookShelf/BookShelf";
+import BookSearch from "./components/BookSearch/BookSearch";
 
 function App() {
   return (

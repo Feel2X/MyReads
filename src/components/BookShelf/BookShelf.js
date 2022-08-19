@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 
 // custom components
-import PageHeader from "./PageHeader"
-import Spinner from "./Spinner"
+import PageHeader from "../PageHeader"
+import Spinner from "../Spinner"
 
 // hooks
-import useBookAPI from "../hooks/useBookAPI"
+import useBookAPI from "../../hooks/useBookAPI"
 
 // ant design
 import { Button, Layout } from "antd"

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { PlusOutlined } from "@ant-design/icons";
 
 // style
-import style from "../assets/styles/addButton.module.css"
+import style from "../../assets/styles/AddButton.module.css"
 
 const AddButton = () => {
     const navigate = useNavigate()

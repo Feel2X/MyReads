@@ -1,5 +1,5 @@
 // custom styles
-import styles from "../assets/styles/header.module.css";
+import styles from "../assets/styles/Header.module.css";
 // images & icons
 import logo from "../assets/icons/books.png";
 // ant design
