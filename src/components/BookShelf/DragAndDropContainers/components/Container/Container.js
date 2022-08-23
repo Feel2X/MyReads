@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import classNames from 'classnames'
 
-import styles from './Container.module.scss'
+import styles from '../../../../../assets/styles/Container.module.scss'
 
 // ant design
 import { Typography } from "antd"

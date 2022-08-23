@@ -5,9 +5,11 @@ import * as BooksAPI from "../api/BooksAPI"
 
 const useBooksAPI = () => {
     const [booksFetched, setBooksFetched] = useState(false)
+    const [booksUpdating, setBooksUpdating] = useState(false)
+    const [searching, setSearching] = useState(false)
     const [registeredBooks, setRegisteredBooks] = useState([])
     const [sortedBookIds, setSortedBookIds] = useState({})
-    const [searchResultBooks, setSearchResultBooks] = useState([])
+    const [searchResultBooks, setSearchResultBooks] = useState({})
     const [sortedResultBookIds, setSortedResultBookIds] = useState({})
     const [noSearchResults, setNoSearchResults] = useState(false)
     let lastQuery = useRef("")
@@ -29,14 +31,18 @@ const useBooksAPI = () => {
     }
 
     const updateBookCategory = async (bookId, shelf) => {
+        setBooksUpdating(true)
         console.log(`updating book "${bookId}" to shelf "${shelf}"`)
         const res = await BooksAPI.update(bookId, shelf)
+        setBooksUpdating(false)
     }
 
     const searchBooks = async (query) => {
         if (query !== lastQuery.current) {
             console.log(`requesting book search for "${query}"`)
+            setSearching(true)
             const books = await BooksAPI.search(query, 20)
+            setSearching(false)
             console.log(books)
             if (books?.error) { // if results empty
                 setNoSearchResults(true)
@@ -63,9 +69,12 @@ const useBooksAPI = () => {
 
     return {
         booksFetched,
+        booksUpdating,
+        searching,
         registeredBooks,
         sortedBookIds,
         searchResultBooks,
+        lastQuery,
         sortedResultBookIds,
         noSearchResults,
         fetchRegisteredBooks,

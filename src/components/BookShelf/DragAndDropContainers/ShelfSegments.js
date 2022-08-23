@@ -328,7 +328,7 @@ export function ShelfSegments({
                     }));
 
                     // send api call to update books if user wants to remove it from the shelves
-                    updateBookCategory(active.id, "None").then(console.log)
+                    updateBookCategory(active.id, "None")
 
                     setActiveId(null);
                     return;
@@ -437,8 +437,8 @@ export function ShelfSegments({
     function renderSortableItemDragOverlay(bookId) {
         return (
             <Book
-                value={bookId}
-                bookInfo={registeredBooks[bookId]}
+                bookId={bookId}
+                registeredBooks={registeredBooks}
                 handle={handle}
                 style={getItemStyles({
                     containerId: findContainer(bookId),
@@ -469,9 +469,8 @@ export function ShelfSegments({
             >
                 {bookIds[containerId].map((bookId, index) => (
                     <Book
-                        key={bookId}
-                        value={bookId}
-                        bookInfo={registeredBooks[bookId]}
+                        bookId={bookId}
+                        registeredBooks={registeredBooks}
                         handle={handle}
                         style={getItemStyles({
                             containerId,
@@ -581,8 +580,8 @@ function SortableItem({
     return (
         <Book
             ref={disabled ? undefined : setNodeRef}
-            value={bookId}
-            bookInfo={registeredBooks[bookId]}
+            bookId={bookId}
+            registeredBooks={registeredBooks}
             dragging={isDragging}
             sorting={isSorting}
             handle={handle}

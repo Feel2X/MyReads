@@ -1,8 +1,11 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
+
+// custom components
+import BookDisplay from "../../../../BookDisplay/BookDisplay";
 
 // style
 import classNames from 'classnames'
-import styles from './Book.module.scss'
+import styles from '../../../../../assets/styles/Book.module.scss'
 
 // ant design
 import { Typography } from "antd"
@@ -14,6 +17,8 @@ export const Book = React.memo(
   React.forwardRef(
     (
       {
+          bookId,
+          registeredBooks,
           color,
           dragOverlay,
           dragging,
@@ -30,8 +35,6 @@ export const Book = React.memo(
           style,
           transition,
           transform,
-          value,
-          bookInfo,
           wrapperStyle,
           ...props
       },
@@ -61,7 +64,7 @@ export const Book = React.memo(
               style,
               transform,
               transition,
-              value,
+              value: bookId,
             })
       ) : (
           <li
@@ -110,27 +113,10 @@ export const Book = React.memo(
                   {...props}
                   tabIndex={!handle ? 0 : undefined}
               >
-                  <BookDisplay bookInfo={ bookInfo } />
+                  <BookDisplay bookId={bookId} registeredBooks={registeredBooks} />
               </div>
           </li>
       );
     }
   )
 );
-
-const BookDisplay = ({ bookInfo }) => {
-    return (
-        <div className={styles.BookDisplay}>
-            <div className={styles.BookCoverContainer}>
-                <img src={bookInfo['imageLinks']['thumbnail']} className={styles.BookCover} />
-            </div>
-            <div className={styles.BookInfo}>
-                <Text>{ bookInfo["title"] }</Text>
-                <br />
-                <div className={styles.BookAuthor}>
-                    <Text type={"secondary"}>{ bookInfo["authors"][0] }</Text>
-                </div>
-            </div>
-        </div>
-    )
-}
