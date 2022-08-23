@@ -42,7 +42,7 @@ const openSuccessNotification = () => {
 }
 
 const AddModal = ({ modalOpen, setModalOpen, bookInfo, bookId, registeredBooks }) => {
-    const initialCategory = registeredBooks[bookId] ? registeredBooks[bookId].shelf : "None"
+    const [initialCategory, setInitialCategory] = useState(registeredBooks[bookId] ? registeredBooks[bookId].shelf : "None")
     const [selectedCategory, setSelectedCategory] = useState(initialCategory)
     const [selectionValid, setSelectionValid] = useState(false)
     const { booksUpdating, updateBookCategory } = useBooksAPI()
@@ -52,6 +52,7 @@ const AddModal = ({ modalOpen, setModalOpen, bookInfo, bookId, registeredBooks }
     const handleSubmit = e => {
         e.stopPropagation() // required to not propagate the click event to () => setModalOpen(true) of parent
         updateBookCategory(bookId, selectedCategory)
+        setInitialCategory(selectedCategory)
         setModalOpen(false)
         openSuccessNotification()
     }
