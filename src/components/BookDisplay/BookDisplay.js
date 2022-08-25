@@ -21,7 +21,7 @@ const BookDisplay = ({ bookInfo, bookId, registeredBooks, renderAddOverlay=false
     return (
         <div className={styles.BookDisplay}>
             <div className={styles.BookCoverContainer}>
-                <img src={bookInfos['imageLinks']['thumbnail']} className={styles.BookCover} />
+                <img src={bookInfos['imageLinks'] ? bookInfos['imageLinks']['thumbnail'] : null } className={styles.BookCover} />
                 { renderAddOverlay &&
                     <AddButtonOverlay bookId={bookId} bookInfo={bookInfos} registeredBooks={registeredBooks} />
                 }

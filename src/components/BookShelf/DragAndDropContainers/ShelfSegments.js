@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { createPortal, unstable_batchedUpdates } from 'react-dom';
+import { createPortal } from 'react-dom';
 
 // dnd kit
 import {
@@ -24,7 +24,7 @@ import {
     arrayMove,
     defaultAnimateLayoutChanges,
     verticalListSortingStrategy,
-    horizontalListSortingStrategy,
+    horizontalListSortingStrategy, rectSortingStrategy,
 } from '@dnd-kit/sortable';
 
 // custom components
@@ -40,17 +40,17 @@ const containerNames = {
 }
 
 const animateLayoutChanges = (args) =>
-    defaultAnimateLayoutChanges({...args, wasDragging: true});
+    defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
 function DroppableContainer({
-                                children,
-                                columns = 1,
-                                disabled,
-                                id,
-                                items,
-                                style,
-                                ...props
-                            }) {
+    children,
+    columns = 1,
+    disabled,
+    id,
+    items,
+    style,
+    ...props
+}) {
     const {
         active,
         over,
@@ -108,7 +108,7 @@ export function ShelfSegments({
                                   minimal = false,
                                   modifiers,
                                   renderItem,
-                                  strategy = horizontalListSortingStrategy,
+                                  strategy = rectSortingStrategy,
                                   trashable = false,
                                   vertical = false,
                                   scrollable,
@@ -340,11 +340,6 @@ export function ShelfSegments({
                     const activeIndex = bookIds[activeContainer].indexOf(active.id);
                     const overIndex = bookIds[overContainer].indexOf(overId);
 
-                    // send api call to update books if category has been changed
-                    if (startContainer.current !== overContainer) {
-                        updateBookCategory(active.id, overContainer)
-                    }
-
                     if (activeIndex !== overIndex) {
                         setBookIds((items) => ({
                             ...items,
@@ -354,6 +349,15 @@ export function ShelfSegments({
                                 overIndex
                             ),
                         }));
+                    }
+
+                    // send api call to update books if category has been changed
+                    if (startContainer.current !== overContainer) {
+                        updateBookCategory(active.id, overContainer)
+                        console.log("---")
+                        bookIds[overContainer].map(id => {
+                            console.log(registeredBooks[id].title)
+                        })
                     }
                 }
 
@@ -511,21 +515,6 @@ function Trash({id}) {
     return (
         <div
             ref={setNodeRef}
-/*            style={{
-                backgroundColor: "white",
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'fixed',
-                left: '50%',
-                marginLeft: -150,
-                bottom: 20,
-                width: 300,
-                height: 60,
-                borderRadius: 5,
-                border: '1px solid',
-                borderColor: isOver ? 'red' : '#DDD',
-            }}*/
             style={{
                 backgroundColor: "white",
                 color: isOver ? 'red' : '#001529',
@@ -536,7 +525,6 @@ function Trash({id}) {
                 position: 'fixed',
                 left: '25px',
                 bottom: "45px",
-                // transform: "translate(0, -50%)",
                 width: "clamp(75px, 7vw, 175px)",
                 height: "clamp(75px, 7vw, 175px)",
                 borderRadius: 5,
