@@ -63,7 +63,8 @@ const openSuccessNotification = () => {
     notification["success"]({
         message: "Shelf updated successfully!",
         duration: 2,
-        placement: "bottom"
+        placement: "bottom",
+        onClose: () => {}
     })
 }
 
