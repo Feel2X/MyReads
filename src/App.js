@@ -11,7 +11,7 @@ function App() {
             <Route exact path="/" element={
                 <BookShelf />
             } />
-            <Route path="/add" element={
+            <Route path="/search" element={
                 <BookSearch />
             } />
         </Routes>
