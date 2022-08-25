@@ -5,13 +5,13 @@ import PropTypes from "prop-types"
 import { Alert, Modal, notification, Radio, Space, Typography } from "antd"
 
 // custom hooks
-import useBooksAPI from "../../hooks/useBookAPI"
+import useBooksAPI from "../hooks/useBooksAPI"
 
 // images & icons
 import { PlusOutlined } from "@ant-design/icons"
 
 // style
-import styles from "../../assets/styles/Book.module.scss"
+import styles from "../assets/styles/Book.module.scss"
 
 const { Text } = Typography
 

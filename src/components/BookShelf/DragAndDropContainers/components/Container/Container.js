@@ -53,9 +53,6 @@ export const Container = forwardRef(
         tabIndex={onClick ? 0 : undefined}
       >
         {label ? (
-          /*<div className={styles.Header}>
-            {label} // CUSTOM
-          </div>*/
           <Title level={4} className={styles.Header}>{label}</Title>
         ) : null}
         {placeholder ? children : <ul>{children}</ul>}

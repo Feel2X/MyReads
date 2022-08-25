@@ -5,7 +5,7 @@ import PageHeader from "../PageHeader"
 import Spinner from "../Spinner"
 
 // hooks
-import useBookAPI from "../../hooks/useBookAPI"
+import useBookAPI from "../../hooks/useBooksAPI"
 
 // ant design
 import { Button, Layout } from "antd"
@@ -16,9 +16,7 @@ import {rectSortingStrategy} from "@dnd-kit/sortable"
 import {ShelfSegments} from "./DragAndDropContainers/ShelfSegments"
 
 // images & icons
-import { PlusOutlined } from "@ant-design/icons"
 import AddButton from "./AddButton";
-
 
 const { Content } = Layout
 
@@ -43,13 +41,13 @@ const BookShelf = () => {
                 :
                 <>
                     <ShelfSegments
-                        registeredBooks={registeredBooks}
-                        items={sortedBookIds}
-                        updateBookCategory={updateBookCategory}
-                        vertical
-                        columns={3}
-                        strategy={rectSortingStrategy}
+                        registeredBooks={ registeredBooks }
+                        items={ sortedBookIds }
+                        updateBookCategory={ updateBookCategory }
+                        columns={ 3 }
+                        strategy={ rectSortingStrategy }
                         trashable
+                        vertical
                     />
                     <AddButton />
                 </>

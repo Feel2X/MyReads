@@ -132,28 +132,22 @@ export function ShelfSegments({
                 });
             }
 
-            // Start by finding any intersecting droppable
             const pointerIntersections = pointerWithin(args);
             const intersections =
                 pointerIntersections.length > 0
-                    ? // If there are droppables intersecting with the pointer, return those
+                    ?
                     pointerIntersections
                     : rectIntersection(args);
             let overId = getFirstCollision(intersections, 'id');
 
             if (overId != null) {
                 if (overId === TRASH_ID) {
-                    // If the intersecting droppable is the trash, return early
-                    // Remove this if you're not using trashable functionality in your app
                     return intersections;
                 }
 
                 if (overId in bookIds) {
                     const containerItems = bookIds[overId];
-
-                    // If a container is matched and it contains items (columns 'A', 'B', 'C')
                     if (containerItems.length > 0) {
-                        // Return the closest droppable within that container
                         overId = closestCenter({
                             ...args,
                             droppableContainers: args.droppableContainers.filter(
@@ -174,7 +168,6 @@ export function ShelfSegments({
                 lastOverId.current = activeId;
             }
 
-            // If no droppable is matched, return the last match
             return lastOverId.current ? [{id: lastOverId.current}] : [];
         },
         [activeId, bookIds]
@@ -209,8 +202,6 @@ export function ShelfSegments({
 
     const onDragCancel = () => {
         if (clonedItems) {
-            // Reset items to their original state in case items have been
-            // Dragged across containers
             setBookIds(clonedItems);
         }
 
@@ -372,7 +363,7 @@ export function ShelfSegments({
                 <div
                     style={{
                         display: 'inline-grid',
-                        width: "clamp(250px, 75%, 825px)", // CUSTOM
+                        width: "clamp(250px, 75%, 825px)",
                         boxSizing: 'border-box',
                         padding: 20,
                         gridAutoFlow: vertical ? 'row' : 'column',

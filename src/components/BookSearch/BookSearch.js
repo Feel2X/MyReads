@@ -4,13 +4,13 @@ import { useEffect } from "react";
 import { Col, Result, Row } from "antd"
 
 // custom components
-import BookDisplay from "../BookDisplay/BookDisplay";
+import BookDisplay from "../BookDisplay";
 import PageHeader from "../PageHeader"
 import SearchBar from "./SearchBar"
 import Spinner from "../Spinner";
 
 // custom hooks
-import useBookAPI from "../../hooks/useBookAPI"
+import useBookAPI from "../../hooks/useBooksAPI"
 
 // images & icons
 import { QuestionCircleOutlined } from "@ant-design/icons"

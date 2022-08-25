@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 // custom components
-import BookDisplay from "../../../../BookDisplay/BookDisplay";
+import BookDisplay from "../../../../BookDisplay";
 
 // style
 import classNames from 'classnames'
