@@ -2,8 +2,8 @@
     height: 60px;
     width: 100%;
     display: flex;
-    flex-display: row;
-    align-items: start;
+    flex-direction: row;
+    align-items: flex-start;
     box-shadow: 3px 3px 15px gray;
 }
 

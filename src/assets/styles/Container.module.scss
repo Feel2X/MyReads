@@ -1,6 +1,6 @@
 .Container {
   display: flex;
-  align-items: start; // CUSTOM
+  align-items: flex-start;
   flex-direction: column;
   grid-auto-rows: max-content;
   overflow: auto;
@@ -12,7 +12,6 @@
   border-radius: 5px;
   min-height: 200px;
   transition: background-color 350ms ease;
-  // background-color: rgba(246, 246, 246, 1); // CUSTOM
   font-size: 1em;
 
   ul {
