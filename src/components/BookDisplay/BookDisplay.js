@@ -15,7 +15,33 @@ import styles from "../../assets/styles/Book.module.scss"
 
 const { Text } = Typography
 
-/* TODO: extract both components into "AddBook" */
+const BookDisplay = ({ bookInfo, bookId, registeredBooks, renderAddOverlay=false }) => {
+    const bookInfos = bookInfo ? bookInfo : registeredBooks[bookId]
+
+    return (
+        <div className={styles.BookDisplay}>
+            <div className={styles.BookCoverContainer}>
+                <img src={bookInfos['imageLinks']['thumbnail']} className={styles.BookCover} />
+                { renderAddOverlay &&
+                    <AddButtonOverlay bookId={bookId} bookInfo={bookInfos} registeredBooks={registeredBooks} />
+                }
+            </div>
+            <div className={styles.BookInfo}>
+                <Text>{ bookInfos["title"] }</Text>
+                <br />
+                <div className={styles.BookAuthor}>
+                    <Text type={"secondary"}>{ bookInfos["authors"] ? bookInfos["authors"][0] : "N/A" }</Text>
+                </div>
+            </div>
+        </div>
+    )
+}
+BookDisplay.propTypes = {
+    bookId: PropTypes.string.isRequired,
+    registeredBooks: PropTypes.object.isRequired,
+    renderAddOverlay: PropTypes.bool
+}
+
 const AddButtonOverlay = ({ bookId, bookInfo, registeredBooks }) => {
     const [modalOpen, setModalOpen] = useState(false)
 
@@ -92,34 +118,6 @@ const AddModal = ({ modalOpen, setModalOpen, bookInfo, bookId, registeredBooks }
             </div>
         </Modal>
     )
-}
-
-const BookDisplay = ({ bookInfo, bookId, registeredBooks, renderAddOverlay=false }) => {
-    const bookInfos = bookInfo ? bookInfo : registeredBooks[bookId]
-
-    return (
-        <div className={styles.BookDisplay}>
-            <div className={styles.BookCoverContainer}>
-                <img src={bookInfos['imageLinks']['thumbnail']} className={styles.BookCover} />
-                { renderAddOverlay &&
-                    <AddButtonOverlay bookId={bookId} bookInfo={bookInfos} registeredBooks={registeredBooks} />
-                }
-            </div>
-            <div className={styles.BookInfo}>
-                <Text>{ bookInfos["title"] }</Text>
-                <br />
-                <div className={styles.BookAuthor}>
-                    <Text type={"secondary"}>{ bookInfos["authors"] ? bookInfos["authors"][0] : "N/A" }</Text>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-BookDisplay.propTypes = {
-    bookId: PropTypes.string.isRequired,
-    registeredBooks: PropTypes.object.isRequired,
-    renderAddOverlay: PropTypes.bool
 }
 
 export default BookDisplay
