@@ -7,25 +7,21 @@ import BackButton from "./BackButton"
 
 const SearchBar = ({ searchBooks }) => {
     const [searchTerm, setSearchTerm] = useState("")
-    let lastSearchTimestamp = useRef(Date.now())
 
-    useEffect(() => {
-        if (searchTerm.length >= 1) {
-            // implementation of debouncing
-            let timer = setTimeout(() => {
-                searchBooks(searchTerm)
-            }, 500)
-            return () => clearTimeout(timer)
-        }
+    useEffect(() => { // implementation of debouncing
+        let timer = setTimeout(() => {
+            searchBooks(searchTerm)
+        }, 500)
+        return () => clearTimeout(timer)
     }, [searchTerm])
 
     return (
-        <div className={style.searchBarContainer}>
+        <div className={ style.searchBarContainer }>
             <BackButton />
             <input
-                className={style.searchInput}
-                value={searchTerm}
-                onChange={event => setSearchTerm(event.target.value)}
+                className={ style.searchInput }
+                value={ searchTerm }
+                onChange={ event => setSearchTerm(event.target.value) }
                 placeholder="Search by title, author, or ISBN"
                 autoFocus
             />

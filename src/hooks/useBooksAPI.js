@@ -30,12 +30,20 @@ const useBooksAPI = () => {
 
     const updateBookCategory = async (bookId, shelf) => {
         setBooksUpdating(true)
-        const res = await BooksAPI.update(bookId, shelf)
+        await BooksAPI.update(bookId, shelf)
         setBooksUpdating(false)
     }
 
     const searchBooks = async (query) => {
-        if (query !== lastQuery.current) {
+        if (query === "") { // don't call api and reset values on empty search bar
+            setSearchResultBooks({})
+            setSortedResultBookIds({
+                currentlyReading: [],
+                wantToRead: [],
+                read: [],
+            })
+        }
+        if (query !== lastQuery.current && query !== "") {
             setSearching(true)
             const books = await BooksAPI.search(query, 20)
             setSearching(false)
@@ -56,10 +64,10 @@ const useBooksAPI = () => {
                     read: books.filter(book => book.shelf === "read").map(book => book.id),
                 })
             } else {
-                throw new Error("received an unknown response from the search api")
+                throw new Error("Received an unknown response from the search api")
             }
-            lastQuery.current = query
         }
+        lastQuery.current = query
     }
 
     return {

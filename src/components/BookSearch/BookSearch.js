@@ -39,10 +39,10 @@ const BookSearch = () => {
                 <Spinner />
                 :
                 <>
-                    <SearchBar searchBooks={searchBooks} />
+                    <SearchBar searchBooks={ searchBooks } />
                     <SearchStatusDisplay
-                        searching={searching}
-                        numResults={Object.keys(searchResultBooks).length}
+                        searching={ searching }
+                        numResults={ Object.keys(searchResultBooks).length }
                         query={ lastQuery.current }
                     />
                     {
@@ -65,10 +65,10 @@ const BookSearch = () => {
                                                      xs={{ span: 11, offset: 1 }}
                                                 >
                                                     <BookDisplay
-                                                        registeredBooks={registeredBooks}
-                                                        bookId={key}
-                                                        bookInfo={searchResultBooks[key]}
-                                                        renderAddOverlay={true}
+                                                        registeredBooks={ registeredBooks }
+                                                        bookId={ key }
+                                                        bookInfo={ searchResultBooks[key] }
+                                                        renderAddOverlay={ true }
                                                     />
                                                 </Col>
                                             )
