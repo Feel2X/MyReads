@@ -11,13 +11,7 @@ const SearchBar = ({ searchBooks }) => {
 
     useEffect(() => {
         if (searchTerm.length >= 1) {
-            // send api requests on input changes only in certain intervals to reduce api calls
-            const currentTimestamp = Date.now()
-            if (currentTimestamp - lastSearchTimestamp.current >= 1000 && searchTerm.length > 3) {
-                searchBooks(searchTerm)
-                lastSearchTimestamp.current = currentTimestamp
-            }
-            // send api request after user stopped typing for a certain duration
+            // implementation of debouncing
             let timer = setTimeout(() => {
                 searchBooks(searchTerm)
             }, 500)

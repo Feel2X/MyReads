@@ -18,9 +18,7 @@ const useBooksAPI = () => {
 
     const fetchRegisteredBooks = async () => {
         setBooksFetched(false)
-        console.log("fetching registered books...")
         const books = await BooksAPI.getAll()
-        console.log(books)
         setRegisteredBooks(mapBooksToDict(books))
         setSortedBookIds({
             currentlyReading: books.filter(book => book.shelf === "currentlyReading").map(book => book.id),
@@ -32,18 +30,15 @@ const useBooksAPI = () => {
 
     const updateBookCategory = async (bookId, shelf) => {
         setBooksUpdating(true)
-        console.log(`updating book "${bookId}" to shelf "${shelf}"`)
         const res = await BooksAPI.update(bookId, shelf)
         setBooksUpdating(false)
     }
 
     const searchBooks = async (query) => {
         if (query !== lastQuery.current) {
-            console.log(`requesting book search for "${query}"`)
             setSearching(true)
             const books = await BooksAPI.search(query, 20)
             setSearching(false)
-            console.log(books)
             if (books?.error) { // if results empty
                 setNoSearchResults(true)
                 setSearchResultBooks({})
