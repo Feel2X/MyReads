@@ -345,10 +345,6 @@ export function ShelfSegments({
                     // send api call to update books if category has been changed
                     if (startContainer.current !== overContainer) {
                         updateBookCategory(active.id, overContainer)
-                        console.log("---")
-                        bookIds[overContainer].map(id => {
-                            console.log(registeredBooks[id].title)
-                        })
                     }
                 }
 
